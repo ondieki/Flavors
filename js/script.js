@@ -1,6 +1,20 @@
 /* Sets a random integer quantity in range [1, 20] for each flavor. */
 function setQuantities() {
-  // TODO
+ 	 function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+	var getMeta = document.getElementsByClassName("meta");
+	for(i=0; i<getMeta.length; i++){
+		var randomInt = getRandomInt(1,21); 
+		var element1 = document.createElement("span");
+		var theFirstChild = getMeta[i].firstChild;
+		var insertedNode = getMeta[i].insertBefore(element1, theFirstChild);
+		var quantity = document.createTextNode(randomInt);
+		element1.appendChild(quantity);
+		element1.className = "quantity";
+	}
 }
 
 /* Extracts and returns an array of flavor objects based on data in the DOM. Each
