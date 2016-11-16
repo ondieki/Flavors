@@ -27,7 +27,37 @@ function setQuantities() {
  * quantity: how many cups of the flavor are available
  */
 function extractFlavors() {
-  // TODO
+  var getFlavor = document.getElementsByClassName("flavor");
+  var flavorArray = [];
+
+  for(i=0; i<getFlavor.length; i++){
+
+  	var elementFlavor= getFlavor[i];
+  	var h2 = elementFlavor.querySelector(".description h2");
+  	var elementName = h2.innerHTML;
+
+  	var p = elementFlavor.querySelector(".description p");
+  	var elementDescription = p.innerHTML;
+
+	var spanPriceArray = elementFlavor.getElementsByClassName('price');
+  	var elementPrice = spanPriceArray[0].innerHTML;
+  	var numberPriceFloat = Number(elementPrice.replace(/[^0-9\.]+/g,""));
+
+  	var spanQuantityArray = elementFlavor.getElementsByClassName('quantity')
+  	var elementQuantity = spanQuantityArray[0].innerHTML;
+  	var numberQuantity = Number(elementQuantity.replace(/[^0-9\.]+/g,""));
+
+	var elementFlavorObject = {};
+   	elementFlavorObject.element = elementFlavor;
+  	elementFlavorObject.name = elementName;
+  	elementFlavorObject.description = elementDescription;
+  	elementFlavorObject.price = elementPrice;
+  	elementFlavorObject.quantity = elementQuantity;
+  	flavorArray.push(elementFlavorObject);
+  	
+  }
+
+  return flavorArray;
 }
 
 /* Calculates and returns the average price of the given set of flavors. The
